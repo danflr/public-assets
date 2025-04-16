@@ -3,12 +3,16 @@
   <body onload="getCurrencyConversion()">
     <script>
       function getCurrencyConversion(){
+        console.log("Calling currency conversion process.");
         const urlParams = new URLSearchParams(window.location.search);
         const myParam = urlParams.get('amount');
+        console.log("Converting " + myParam + " into mxn...");
         const xmlhttp = new XMLHttpRequest();
         xmlhttp.onload = function() {
+          console.log("Response received: " + this.responseText);
           const myObj = JSON.parse(this.responseText);
-          echo myObj.conversion_result;
+          console.log("Result: " + myObj.conversion_result);
+          document.write(myObj.conversion_result);
         };
         xmlhttp.open("GET", "https://v6.exchangerate-api.com/v6/22eac99327177c3ab8fdcccf/pair/JPY/MXN/" + myParam);
         xmlhttp.send();
