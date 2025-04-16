@@ -1,1 +1,18 @@
-<html><head></head><body>Hello!</body></html>
+<html>
+  <head></head>
+  <body onload="getCurrencyConversion()">
+    <script>
+      function getCurrencyConversion(){
+        const urlParams = new URLSearchParams(window.location.search);
+        const myParam = urlParams.get('amount');
+        const xmlhttp = new XMLHttpRequest();
+        xmlhttp.onload = function() {
+          const myObj = JSON.parse(this.responseText);
+          echo myObj.conversion_result;
+        };
+        xmlhttp.open("GET", "https://v6.exchangerate-api.com/v6/22eac99327177c3ab8fdcccf/pair/JPY/MXN/" + myParam);
+        xmlhttp.send();
+      }
+    </script>
+  </body>
+</html>
