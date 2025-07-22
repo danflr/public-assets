@@ -364,26 +364,12 @@
 
                 <!-- RSVP Card -->
                 <div class="card">
-                    <h3>Confirma tu asistencia!</h3>
+                    <h3>Sobre el evento</h3>
 
-                    <form id="rsvpForm">
-                        <div class="form-group">
-                            <label for="name">Nombre</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="name">Usuario de Twitch (opcional, para identificarte)</label>
-                            <input type="text" id="username" name="username">
-                        </div>
-
-                        <button type="submit" class="submit-btn">Cuenten conmigo! 🥊🏊‍♂️</button>
-                    </form>
-                    <br/>
                     <div class="detail-item">
-                        <div class="detail-icon icon-users">👥</div>
+                        <div class="detail-icon icon-calendar">ℹ️</div>
                         <div class="detail-text">
                             <h4>Detalles</h4>
-                            <p>Trae ropa cómoda y traje de baño, hay alberca en la terraza</p>
                         </div>
                     </div>
 
@@ -397,42 +383,21 @@
                             <li>• Ahí vemos qué más</li>
                         </ul>
                     </div>
+                    <br/>
+                    <div class="detail-item">
+                        <div class="detail-icon icon-location">🗒️</div>
+                        <div class="detail-text">
+                            <h4>Notas</h4>
+                            <p>Trae ropa cómoda y traje de baño, hay alberca en la terraza. Trae lo que gustes tomar también!</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Form submission handler
-        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const formData = new FormData(this);
-            const name = formData.get('name');
-            const user = formData.get('username');
-            
-            // Simple validation
-            if (!name || !user) {
-                alert('Please fill in all required fields!');
-                return;
-            }
-            
-            fetch('https://api.sendgrid.com/v3/mail/send', {
-                method: 'POST', 
-                headers: {
-                    'Content-Type': 'application/json', 
-                    'Authorization': 'Bearer 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'
-                }, 
-                body: '{"from":{"email":"sendgrid@danflr.tech"},"personalizations":[{"to":[{"email":"danflr@icloud.com"}],"dynamic_template_data":{"ATTENDEE_NAME": "' + name + '", "ATTENDEE_USER": "' + user + '"}}],"template_id":"d-88383d848ebf4c1fabd6b2aff7163db5"}'
-            });
-
-            // Simulate form submission
-            alert(`Gracias ${name}! Tu asistencia fue confirmada. Te esperamos el día del evento. :)`);
-            
-            // Reset form
-            this.reset();
-        });
-
+        
         // Add some interactive effects
         document.addEventListener('DOMContentLoaded', function() {
             // Smooth scrolling for any internal links
